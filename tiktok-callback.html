@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TikTok Authorization — Football Flashing News</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { margin:0; font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+         background:#0b0e14; color:#e7ecf3; display:flex; min-height:100vh;
+         align-items:center; justify-content:center; }
+  .card { max-width:560px; padding:44px 36px; text-align:center; }
+  h1 { font-size:1.5rem; margin:0 0 10px; letter-spacing:-.4px; }
+  p { line-height:1.6; color:#aeb8c7; }
+  code { display:inline-block; margin-top:10px; padding:10px 14px; border-radius:8px;
+         background:#11161f; border:1px solid #2a3550; color:#7da2ff; word-break:break-all; }
+  .err { color:#ff8a8a; }
+</style>
+</head>
+<body>
+  <div class="card" id="card">
+    <h1>Completing TikTok authorization…</h1>
+    <p>One moment — returning you to the application.</p>
+  </div>
+<script>
+  // TikTok redirects here (HTTPS, on a verified URL property — production requires this).
+  // We forward the ?code/?state to the desktop app's loopback listener so the OAuth flow
+  // completes with no manual copy-paste. If the listener isn't running, we show the code.
+  (function () {
+    var qs = window.location.search || "";
+    var params = new URLSearchParams(qs);
+    var card = document.getElementById("card");
+
+    if (params.get("error")) {
+      card.innerHTML = '<h1 class="err">Authorization failed</h1><p>' +
+        (params.get("error_description") || params.get("error")) +
+        '</p><p>Close this tab and try again.</p>';
+      return;
+    }
+
+    var code = params.get("code");
+    if (!code) {
+      card.innerHTML = '<h1 class="err">No authorization code received</h1>' +
+        '<p>Close this tab and re-run the authorization.</p>';
+      return;
+    }
+
+    // Forward to the local listener. Top-level navigation https -> http://localhost is
+    // permitted by browsers (loopback is a trustworthy origin).
+    var loopback = "http://localhost:8723/callback" + qs;
+    setTimeout(function () { window.location.replace(loopback); }, 250);
+
+    // Fallback shown if the loopback isn't reachable (page stays open).
+    setTimeout(function () {
+      card.innerHTML =
+        '<h1>Authorization code ready</h1>' +
+        '<p>If the app did not pick it up automatically, the local listener was not ' +
+        'running. Re-run the authorization with it active, or paste this code where the ' +
+        'tool asks for it:</p><code>' + code + '</code>';
+    }, 2500);
+  })();
+</script>
+</body>
+</html>
