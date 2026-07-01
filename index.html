@@ -3,33 +3,489 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Football Flashing News</title>
+<title>Football Flashing News — Automated Football News, Match Results &amp; Transfers</title>
+<meta name="description" content="Football Flashing News is an operator-run automated service that produces original football (soccer) graphics — match-result carousels, highlight reels, fixture previews and transfer cards — and publishes them to its own Instagram and TikTok account via TikTok's official Content Posting API.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%237da2ff'/><text x='16' y='22' font-size='13' font-family='Arial' font-weight='800' fill='%230b0e14' text-anchor='middle'>FFN</text></svg>">
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%237da2ff'/><text x='16' y='22' font-size='13' font-family='Arial' font-weight='800' fill='%230b0e14' text-anchor='middle'>FFN</text></svg>">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Football Flashing News">
+<meta property="og:description" content="Operator-run automated football news — results, reels, previews and transfers — published via TikTok's official Content Posting API.">
+<meta property="og:url" content="https://emmesss.github.io/football-flashing-news/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Football Flashing News">
+<meta name="twitter:description" content="Operator-run automated football news — results, reels, previews and transfers — published via TikTok's official Content Posting API.">
+<link rel="canonical" href="https://emmesss.github.io/football-flashing-news/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Football Flashing News",
+  "url": "https://emmesss.github.io/football-flashing-news/",
+  "email": "pedrolfmachado@gmail.com",
+  "description": "Operator-run automated football news service that produces original first-party football graphics and publishes them to its own Instagram and TikTok account via TikTok's official Content Posting API.",
+  "sameAs": [
+    "https://www.instagram.com/football.flashing.news",
+    "https://www.tiktok.com/@football.flashing.news"
+  ]
+}
+</script>
 <style>
-  :root { color-scheme: light dark; }
-  body { margin:0; font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-         background:#0b0e14; color:#e7ecf3; display:flex; min-height:100vh; align-items:center; justify-content:center; }
-  .card { max-width:640px; padding:48px 40px; }
-  h1 { font-size:2rem; margin:0 0 4px; letter-spacing:-.5px; }
-  .tag { color:#7da2ff; font-weight:600; text-transform:uppercase; font-size:.8rem; letter-spacing:1px; }
-  p { line-height:1.6; color:#aeb8c7; }
-  a.btn { display:inline-block; margin:10px 12px 0 0; padding:12px 20px; border-radius:10px;
-          background:#1b2333; color:#e7ecf3; text-decoration:none; border:1px solid #2a3550; font-weight:600; }
-  a.btn:hover { background:#222c40; }
-  footer { margin-top:28px; color:#5d6b82; font-size:.85rem; }
+  :root {
+    color-scheme: light dark;
+    --bg:#0b0e14;
+    --panel:#161b26;
+    --panel-2:#1b2333;
+    --text:#e7ecf3;
+    --muted:#b6c0cf;
+    --muted-2:#aeb8c7;
+    --faint:#5d6b82;
+    --accent:#7da2ff;
+    --border:#1e2737;
+    --border-2:#2a3550;
+  }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body {
+    margin:0;
+    font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a { color:var(--accent); text-decoration:none; }
+  a:hover { text-decoration:underline; }
+
+  /* ---------- NAV ---------- */
+  .nav {
+    position:sticky; top:0; z-index:50;
+    background:rgba(11,14,20,.88);
+    backdrop-filter:saturate(140%) blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-inner {
+    max-width:1080px; margin:0 auto; padding:12px 20px;
+    display:flex; align-items:center; gap:18px; flex-wrap:wrap;
+  }
+  .brand { display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:-.3px; color:var(--text); }
+  .brand:hover { text-decoration:none; }
+  .logo {
+    width:30px; height:30px; border-radius:8px; flex:0 0 auto;
+    background:linear-gradient(135deg,#7da2ff,#2a3550);
+    display:flex; align-items:center; justify-content:center;
+    font-size:.9rem; font-weight:800; color:#0b0e14;
+  }
+  .brand-name { font-size:1.02rem; }
+  .nav-links { display:flex; gap:4px; margin-left:auto; flex-wrap:wrap; }
+  .nav-links a {
+    color:var(--muted); font-size:.9rem; padding:7px 11px; border-radius:8px;
+  }
+  .nav-links a:hover { color:var(--text); background:var(--panel-2); text-decoration:none; }
+
+  /* ---------- LAYOUT ---------- */
+  .wrap { max-width:1080px; margin:0 auto; padding:0 20px; }
+  section { padding:64px 0; border-bottom:1px solid var(--border); }
+  section:last-of-type { border-bottom:none; }
+  .eyebrow {
+    color:var(--accent); font-weight:700; text-transform:uppercase;
+    font-size:.74rem; letter-spacing:1.4px; margin:0 0 12px;
+  }
+  h1 { font-size:clamp(2rem,5vw,3rem); line-height:1.12; letter-spacing:-1px; margin:0 0 16px; }
+  h2 { font-size:clamp(1.5rem,3.4vw,2rem); letter-spacing:-.5px; margin:0 0 14px; }
+  h3 { font-size:1.06rem; margin:0 0 8px; color:var(--text); }
+  p { color:var(--muted-2); }
+  .lead { font-size:1.12rem; color:var(--muted); max-width:62ch; }
+  .section-intro { max-width:64ch; color:var(--muted-2); margin:0 0 30px; }
+
+  /* ---------- HERO ---------- */
+  .hero { padding:84px 0 70px; }
+  .hero .eyebrow { font-size:.78rem; }
+  .hero p.lead { margin:0 0 12px; }
+  .hero .sub { color:var(--muted-2); max-width:60ch; margin:0 0 28px; }
+  .cta-row { display:flex; gap:12px; flex-wrap:wrap; margin-top:6px; }
+  .btn {
+    display:inline-block; padding:12px 22px; border-radius:10px; font-weight:600;
+    border:1px solid var(--border-2); background:var(--panel-2); color:var(--text);
+  }
+  .btn:hover { background:#222c40; text-decoration:none; }
+  .btn-primary { background:var(--accent); border-color:var(--accent); color:#0b0e14; }
+  .btn-primary:hover { background:#9bb6ff; }
+  .pill {
+    display:inline-flex; align-items:center; gap:8px; margin-bottom:20px;
+    padding:6px 13px; border:1px solid var(--border-2); border-radius:999px;
+    background:var(--panel); color:var(--muted); font-size:.82rem;
+  }
+  .dot { width:8px; height:8px; border-radius:50%; background:#41d18a; flex:0 0 auto; }
+
+  /* ---------- CARDS / GRID ---------- */
+  .grid { display:grid; gap:16px; }
+  .grid-2 { grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); }
+  .grid-3 { grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); }
+  .grid-4 { grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); }
+  .card {
+    background:var(--panel); border:1px solid var(--border);
+    border-radius:12px; padding:22px;
+  }
+  .card h3 { display:flex; align-items:center; gap:10px; }
+  .card p { font-size:.94rem; margin:0; color:var(--muted-2); }
+  .ico {
+    width:34px; height:34px; border-radius:9px; flex:0 0 auto;
+    background:var(--panel-2); border:1px solid var(--border-2);
+    display:flex; align-items:center; justify-content:center; font-size:1.05rem;
+  }
+
+  /* ---------- STEPS ---------- */
+  .steps { display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); counter-reset:step; }
+  .step {
+    background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:22px; position:relative;
+  }
+  .step .num {
+    width:30px; height:30px; border-radius:8px; background:var(--panel-2);
+    border:1px solid var(--border-2); color:var(--accent); font-weight:700;
+    display:flex; align-items:center; justify-content:center; margin-bottom:12px;
+  }
+  .step h3 { font-size:1rem; }
+  .step p { font-size:.9rem; margin:0; color:var(--muted-2); }
+
+  /* ---------- CONSENT LIST ---------- */
+  .panel {
+    background:var(--panel); border:1px solid var(--border);
+    border-radius:14px; padding:26px;
+  }
+  .consent { list-style:none; padding:0; margin:18px 0 0; display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); }
+  .consent li { display:flex; gap:12px; align-items:flex-start; }
+  .check {
+    flex:0 0 auto; width:22px; height:22px; border-radius:6px; margin-top:1px;
+    background:var(--panel-2); border:1px solid var(--border-2); color:var(--accent);
+    display:flex; align-items:center; justify-content:center; font-size:.8rem; font-weight:700;
+  }
+  .consent li strong { color:var(--text); font-weight:600; }
+  .consent li span { color:var(--muted-2); font-size:.92rem; }
+
+  /* ---------- TABLE ---------- */
+  .table-wrap { overflow-x:auto; border:1px solid var(--border); border-radius:12px; margin-top:8px; }
+  table { width:100%; border-collapse:collapse; min-width:560px; }
+  th, td { text-align:left; padding:14px 16px; border-bottom:1px solid var(--border); vertical-align:top; }
+  th { background:var(--panel-2); color:var(--text); font-size:.82rem; text-transform:uppercase; letter-spacing:.6px; }
+  td { color:var(--muted-2); font-size:.94rem; }
+  tr:last-child td { border-bottom:none; }
+  code { background:var(--panel-2); border:1px solid var(--border-2); border-radius:6px; padding:1px 6px; font-size:.86em; color:#cdd7e6; }
+
+  /* ---------- FAQ ---------- */
+  .faq details {
+    background:var(--panel); border:1px solid var(--border); border-radius:12px;
+    padding:0; margin-bottom:12px; overflow:hidden;
+  }
+  .faq summary {
+    cursor:pointer; padding:18px 20px; font-weight:600; color:var(--text);
+    list-style:none; display:flex; justify-content:space-between; align-items:center; gap:14px;
+  }
+  .faq summary::-webkit-details-marker { display:none; }
+  .faq summary::after { content:"+"; color:var(--accent); font-size:1.3rem; font-weight:400; }
+  .faq details[open] summary::after { content:"\2212"; }
+  .faq details p { padding:0 20px 20px; margin:0; font-size:.95rem; }
+
+  /* ---------- CONTACT ---------- */
+  .contact-grid { display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); }
+  .contact-card { background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:22px; }
+  .contact-card .label { color:var(--faint); font-size:.78rem; text-transform:uppercase; letter-spacing:.8px; margin:0 0 6px; }
+  .contact-card a { font-size:1.02rem; font-weight:600; }
+
+  .note {
+    background:var(--panel-2); border:1px solid var(--border-2); border-radius:10px;
+    padding:14px 16px; font-size:.9rem; color:var(--muted); margin-top:18px;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer.site {
+    background:var(--bg); border-top:1px solid var(--border); padding:40px 0 48px;
+  }
+  .foot-inner {
+    max-width:1080px; margin:0 auto; padding:0 20px;
+    display:flex; flex-wrap:wrap; gap:18px 32px; align-items:flex-start; justify-content:space-between;
+  }
+  .foot-brand { max-width:340px; }
+  .foot-brand p { font-size:.9rem; color:var(--muted-2); margin:10px 0 0; }
+  .foot-links { display:flex; flex-wrap:wrap; gap:8px 22px; }
+  .foot-links a { color:var(--muted); font-size:.92rem; }
+  .foot-links a:hover { color:var(--text); }
+  .copyright { width:100%; margin-top:26px; padding-top:20px; border-top:1px solid var(--border); color:var(--faint); font-size:.85rem; }
+
+  @media (max-width:640px){
+    section { padding:48px 0; }
+    .hero { padding:56px 0 48px; }
+    .nav-links { width:100%; margin-left:0; }
+    .nav-links a { padding:6px 9px; }
+  }
 </style>
 </head>
 <body>
-  <div class="card">
-    <div class="tag">Social Media Automation</div>
-    <h1>Football Flashing News</h1>
-    <p>Football Flashing News is an automated content service that publishes football
-       (soccer) news &mdash; transfer updates, match results, and fixture previews &mdash;
-       to its own operator's social media accounts on Instagram and TikTok.</p>
-    <p>It uses the official TikTok Content Posting API to publish video and image content
-       to a single authorized TikTok account owned by the service operator.</p>
-    <a class="btn" href="./tos.html">Terms of Service</a>
-    <a class="btn" href="./privacy.html">Privacy Policy</a>
-    <footer>&copy; 2026 Football Flashing News &middot; Contact: pedrolfmachado@gmail.com</footer>
+
+<!-- ================= NAV ================= -->
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top">
+      <span class="logo">FFN</span>
+      <span class="brand-name">Football Flashing News</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#top">Home</a>
+      <a href="#about">About</a>
+      <a href="#how">How It Works</a>
+      <a href="#features">Features</a>
+      <a href="#permissions">Permissions</a>
+      <a href="#faq">FAQ</a>
+      <a href="./tos.html">Terms</a>
+      <a href="./privacy.html">Privacy</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </div>
+</header>
+
+<a id="top"></a>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="wrap">
+    <span class="pill"><span class="dot"></span> Operator-run · Official TikTok Content Posting API</span>
+    <p class="eyebrow">Automated Football News Publishing</p>
+    <h1>Football Flashing News</h1>
+    <p class="lead">Automated football (soccer) news — match results, highlight reels, fixture previews and transfer updates — published to social media.</p>
+    <p class="sub">Football Flashing News is a single-operator, server-side automation service that produces original first-party football graphics and posts them to the brand's own accounts. It already runs on Instagram as <strong>@football.flashing.news</strong> and mirrors that same content to the matching TikTok account through TikTok's official Content Posting API. There are no end-user accounts — it acts only on behalf of its operator, on the one account the operator authorizes.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#how">How it works</a>
+      <a class="btn" href="#features">What we publish</a>
+      <a class="btn" href="https://www.tiktok.com/@football.flashing.news" target="_blank" rel="noopener">@football.flashing.news on TikTok</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section id="about">
+  <div class="wrap">
+    <p class="eyebrow">What it is</p>
+    <h2>A personal, operator-run football-news studio</h2>
+    <p class="section-intro">Football Flashing News is a server-side, headless content-automation tool built and run by a single operator. It generates original football graphics and publishes them to one Instagram account and one TikTok account that the operator owns. It is <strong>not</strong> a multi-user product: there are no sign-ups, no logins, no dashboards, and no ability for any third party to post through it.</p>
+    <div class="grid grid-3">
+      <div class="card">
+        <h3><span class="ico">🛠️</span> Single operator</h3>
+        <p>One person builds the graphics and authorizes publishing. The tool only ever touches the single TikTok and single Instagram account the operator owns and explicitly connects.</p>
+      </div>
+      <div class="card">
+        <h3><span class="ico">⚽</span> Football-only content</h3>
+        <p>Everything it publishes is original first-party football coverage — focused on the FIFA World Cup 2026 and the wider soccer calendar. No reposting of other people's media.</p>
+      </div>
+      <div class="card">
+        <h3><span class="ico">🔁</span> Mirrors Instagram to TikTok</h3>
+        <p>The Instagram channel is already live. The TikTok integration mirrors that same media to TikTok so the two channels stay in sync, using TikTok's official API.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FEATURES / SERVICES ================= -->
+<section id="features">
+  <div class="wrap">
+    <p class="eyebrow">What we publish</p>
+    <h2>Original football graphics, produced in-house</h2>
+    <p class="section-intro">Every post is a first-party graphic created by the service from cross-checked information. Four core formats make up the bulk of what goes out to Instagram and TikTok.</p>
+    <div class="grid grid-4">
+      <div class="card">
+        <h3><span class="ico">🏆</span> Match-result carousels</h3>
+        <p>Multi-image carousels with final scores, scorers, key stats and penalty-shootout outcomes for World Cup 2026 and other fixtures.</p>
+      </div>
+      <div class="card">
+        <h3><span class="ico">🎬</span> Highlight &amp; transfer reels</h3>
+        <p>Short vertical video reels covering match moments and player-transfer stories, formatted for the social feed.</p>
+      </div>
+      <div class="card">
+        <h3><span class="ico">📅</span> Fixture previews</h3>
+        <p>Pre-match preview cards with line-up context, kickoff details and the storylines going into each game.</p>
+      </div>
+      <div class="card">
+        <h3><span class="ico">📰</span> Transfer-news cards</h3>
+        <p>Clean transfer-update cards summarizing confirmed and reported moves across the football transfer market.</p>
+      </div>
+    </div>
+    <div class="note">Editorial accuracy: every result and stat is cross-checked against at least two independent sources before it is published. Content is provided on a reasonable-efforts basis and is not guaranteed.</div>
+  </div>
+</section>
+
+<!-- ================= HOW IT WORKS ================= -->
+<section id="how">
+  <div class="wrap">
+    <p class="eyebrow">How it works</p>
+    <h2>From graphic to published post</h2>
+    <p class="section-intro">The pipeline is fully first-party: the service creates the media, verifies the facts, shows a full consent screen, and then publishes through TikTok's official API to the operator's own account.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="num">1</div>
+        <h3>Create the graphic</h3>
+        <p>An original match-result carousel, reel, preview or transfer card is generated first-party — no scraped or third-party media.</p>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <h3>Verify the facts</h3>
+        <p>Scores, scorers and stats are cross-checked against two or more independent sources before anything is queued.</p>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <h3>Review &amp; consent</h3>
+        <p>The operator reviews the post on a consent screen that shows the connected creator, an editable caption, a privacy selector and interaction controls.</p>
+      </div>
+      <div class="step">
+        <div class="num">4</div>
+        <h3>Publish via official API</h3>
+        <p>On confirmation, the post is published through TikTok's official Content Posting API (DIRECT_POST) to the operator's own authorized account.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TIKTOK INTEGRATION ================= -->
+<section id="integration">
+  <div class="wrap">
+    <p class="eyebrow">TikTok integration</p>
+    <h2>Built on TikTok's official Content Posting API</h2>
+    <p class="section-intro">The TikTok connection uses the official Content Posting API over HTTPS, authorized through Login Kit OAuth. Video reels are published via <code>DIRECT_POST</code> using direct file upload (single or chunked). Photo carousels are published via <code>DIRECT_POST</code> with <code>source=PULL_FROM_URL</code>: TikTok server-side downloads each image from a public, ownership-verified HTTPS URL (photo posts also set <code>auto_add_music</code> as TikTok requires). Before any post, the service reads the account's <code>creator_info</code> and presents a complete content-sharing consent screen. The operator controls exactly what is published; publishing is disabled until a privacy level is chosen.</p>
+    <div class="panel">
+      <h3>Pre-post consent screen — every element shown before publishing</h3>
+      <ul class="consent">
+        <li><span class="check">✓</span><span><strong>Creator identity</strong> — the connected account's nickname and avatar are shown at the top, read live from <code>creator_info</code>.</span></li>
+        <li><span class="check">✓</span><span><strong>Editable caption</strong> — a caption/title textbox the operator can edit before posting.</span></li>
+        <li><span class="check">✓</span><span><strong>Privacy selector with no default</strong> — the operator must actively pick a privacy level; nothing is pre-selected.</span></li>
+        <li><span class="check">✓</span><span><strong>Comment / Duet / Stitch controls</strong> — honoring <code>creator_info</code>; options the account has disabled are greyed out, none checked by default.</span></li>
+        <li><span class="check">✓</span><span><strong>Commercial-content disclosure</strong> — a toggle that, when on, reveals a Your Brand / Branded Content choice.</span></li>
+        <li><span class="check">✓</span><span><strong>Compliance declarations</strong> — dynamic Music-Usage confirmation, plus the Branded-Content policy statement when Branded is selected.</span></li>
+        <li><span class="check">✓</span><span><strong>Content preview</strong> — the reel plays or the carousel images are shown before publishing.</span></li>
+        <li><span class="check">✓</span><span><strong>Processing notice</strong> — a note that publishing may take a few minutes to process.</span></li>
+        <li><span class="check">✓</span><span><strong>Publish gating</strong> — the Post button stays disabled until a privacy level (and a commercial label, if commercial content is on) is chosen.</span></li>
+      </ul>
+      <div class="note">Pre-audit safety default: every post is forced to <code>SELF_ONLY</code> (private, visible only to the account owner). Public posting is only used after the Content Posting API audit passes.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PERMISSIONS & DATA ================= -->
+<section id="permissions">
+  <div class="wrap">
+    <p class="eyebrow">Permissions &amp; data</p>
+    <h2>Exactly three scopes, and why each is needed</h2>
+    <p class="section-intro">The integration requests only the scopes required to display the connected creator and publish the operator's own media. It accesses no other data — no followers, messages, comments, private content, or any other user's data.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Scope</th><th>Why it is needed</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>user.info.basic</code></td>
+            <td>Reads the authorized account's open ID, nickname/display name and avatar — used only to show the creator's identity on the consent screen and confirm the correct account is connected.</td>
+          </tr>
+          <tr>
+            <td><code>video.publish</code></td>
+            <td>Publishes the operator's own media via <code>DIRECT_POST</code> — video reels by direct file upload, and photo carousels via <code>source=PULL_FROM_URL</code>.</td>
+          </tr>
+          <tr>
+            <td><code>video.upload</code></td>
+            <td>Part of the same video.* product family that authorizes publishing the operator's first-party reels and photo carousels; it supports the inbox-upload path, where a video is sent to the account's TikTok inbox for the operator to finish and post from the TikTok app.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="grid grid-2" style="margin-top:18px;">
+      <div class="card">
+        <h3><span class="ico">🔒</span> No third-party data</h3>
+        <p>The service does not read or store any other TikTok user's data. It does not access followers, direct messages, comments or private content. OAuth tokens are stored locally on the operator's machine in a file excluded from version control, and are auto-refreshed. No end-user databases are maintained. Full detail is in the <a href="./privacy.html">Privacy Policy</a>.</p>
+      </div>
+      <div class="card">
+        <h3><span class="ico">↩️</span> Data deletion &amp; revocation</h3>
+        <p>The operator can revoke the service's access at any time from TikTok account settings (Security &amp; permissions → Manage app permissions), which immediately invalidates the stored tokens. Deleting the local session file removes the stored access and refresh tokens. See the <a href="./privacy.html">Privacy Policy</a> for retention details.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section id="faq">
+  <div class="wrap">
+    <p class="eyebrow">FAQ</p>
+    <h2>Frequently asked questions</h2>
+    <div class="faq" style="margin-top:24px;">
+      <details>
+        <summary>Is this an official TikTok app or a TikTok partner?</summary>
+        <p>No. Football Flashing News is an independent service that <em>uses</em> TikTok's official Content Posting API and Login Kit. It is not built, endorsed, or operated by TikTok, and it is not a TikTok partner.</p>
+      </details>
+      <details>
+        <summary>Who can use it?</summary>
+        <p>Only its single operator. There are no end-user accounts, logins, or dashboards. The service acts solely on behalf of its operator and only on the one TikTok account and one Instagram account the operator owns and authorizes.</p>
+      </details>
+      <details>
+        <summary>What content does it post?</summary>
+        <p>Original first-party football (soccer) graphics: match-result carousels, highlight and transfer reels, fixture previews, and transfer-news cards. It mirrors to TikTok the same content already posted to the brand's Instagram account.</p>
+      </details>
+      <details>
+        <summary>How is account data used?</summary>
+        <p>The connected account's basic info (open ID, nickname, avatar) is used only to display the creator on the consent screen and confirm the right account is connected. Access tokens are used solely to publish the operator's own content. The service does not use any data for advertising, profiling, resale, or any unrelated purpose, and does not read followers, messages, comments, or private content.</p>
+      </details>
+      <details>
+        <summary>How do I revoke access?</summary>
+        <p>Revoke the service's access at any time from your TikTok account settings under Security &amp; permissions → Manage app permissions. That immediately invalidates the stored tokens. Removing the local session file also deletes the stored access and refresh tokens.</p>
+      </details>
+      <details>
+        <summary>Is the content original?</summary>
+        <p>Yes. The graphics are produced first-party by the service from cross-checked information. Results and stats are verified against at least two independent sources before publishing. Content is provided on a reasonable-efforts basis and is not guaranteed.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact">
+  <div class="wrap">
+    <p class="eyebrow">Contact</p>
+    <h2>Get in touch</h2>
+    <p class="section-intro">Football Flashing News is operated by a single person. The fastest way to reach the operator is by email.</p>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <p class="label">Email</p>
+        <a href="mailto:pedrolfmachado@gmail.com">pedrolfmachado@gmail.com</a>
+      </div>
+      <div class="contact-card">
+        <p class="label">TikTok</p>
+        <a href="https://www.tiktok.com/@football.flashing.news" target="_blank" rel="noopener">@football.flashing.news</a>
+      </div>
+      <div class="contact-card">
+        <p class="label">Instagram</p>
+        <a href="https://www.instagram.com/football.flashing.news" target="_blank" rel="noopener">@football.flashing.news</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site">
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <a class="brand" href="#top"><span class="logo">FFN</span><span class="brand-name">Football Flashing News</span></a>
+      <p>An operator-run automated football-news service publishing original graphics to its own Instagram and TikTok account via TikTok's official Content Posting API.</p>
+    </div>
+    <nav class="foot-links" aria-label="Footer">
+      <a href="#how">How It Works</a>
+      <a href="#features">Features</a>
+      <a href="#permissions">Permissions</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+      <a href="./tos.html">Terms of Service</a>
+      <a href="./privacy.html">Privacy Policy</a>
+    </nav>
+    <div class="copyright">
+      © 2026 Football Flashing News · Operated by Pedro Machado · Contact: <a href="mailto:pedrolfmachado@gmail.com">pedrolfmachado@gmail.com</a> ·
+      <a href="./tos.html">Terms of Service</a> · <a href="./privacy.html">Privacy Policy</a><br>
+      Last updated: June 30, 2026
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>

@@ -4,8 +4,24 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Terms of Service &mdash; Football Flashing News</title>
+<meta name="description" content="Terms of Service for Football Flashing News — an operator-run automated football-news service that publishes original graphics to its own Instagram and TikTok account via TikTok's official Content Posting API.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%237da2ff'/><text x='16' y='22' font-size='13' font-family='Arial' font-weight='800' fill='%230b0e14' text-anchor='middle'>FFN</text></svg>">
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%237da2ff'/><text x='16' y='22' font-size='13' font-family='Arial' font-weight='800' fill='%230b0e14' text-anchor='middle'>FFN</text></svg>">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Terms of Service — Football Flashing News">
+<meta property="og:description" content="Terms of Service for Football Flashing News, an operator-run automated football-news service publishing via TikTok's official Content Posting API.">
+<meta property="og:url" content="https://emmesss.github.io/football-flashing-news/tos.html">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://emmesss.github.io/football-flashing-news/tos.html">
 <style>
-  :root { color-scheme: light dark; }
+  :root {
+    color-scheme: light dark;
+    --bg:#0b0e14; --panel:#161b26; --panel-2:#1b2333;
+    --text:#e7ecf3; --muted:#b6c0cf; --muted-2:#aeb8c7; --faint:#5d6b82;
+    --accent:#7da2ff; --border:#1e2737; --border-2:#2a3550;
+  }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
   body { margin:0; font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
          background:#0b0e14; color:#e7ecf3; }
   main { max-width:760px; margin:0 auto; padding:48px 24px 80px; }
@@ -15,12 +31,64 @@
   p, li { line-height:1.7; color:#b6c0cf; }
   .updated { color:#5d6b82; font-size:.9rem; }
   hr { border:none; border-top:1px solid #1e2737; margin:32px 0; }
+
+  /* ---------- shared NAV ---------- */
+  .nav {
+    position:sticky; top:0; z-index:50;
+    background:rgba(11,14,20,.88);
+    backdrop-filter:saturate(140%) blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-inner { max-width:1080px; margin:0 auto; padding:12px 20px;
+    display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+  .brand { display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:-.3px; color:var(--text); text-decoration:none; }
+  .logo { width:30px; height:30px; border-radius:8px; flex:0 0 auto;
+    background:linear-gradient(135deg,#7da2ff,#2a3550);
+    display:flex; align-items:center; justify-content:center;
+    font-size:.9rem; font-weight:800; color:#0b0e14; }
+  .brand-name { font-size:1.02rem; }
+  .nav-links { display:flex; gap:4px; margin-left:auto; flex-wrap:wrap; }
+  .nav-links a { color:var(--muted); font-size:.9rem; padding:7px 11px; border-radius:8px; text-decoration:none; }
+  .nav-links a:hover { color:var(--text); background:var(--panel-2); }
+
+  /* ---------- shared FOOTER ---------- */
+  footer.site { background:var(--bg); border-top:1px solid var(--border); padding:40px 0 48px; margin-top:48px; }
+  .foot-inner { max-width:1080px; margin:0 auto; padding:0 20px;
+    display:flex; flex-wrap:wrap; gap:18px 32px; align-items:flex-start; justify-content:space-between; }
+  .foot-brand { max-width:340px; }
+  .foot-brand p { font-size:.9rem; color:var(--muted-2); margin:10px 0 0; }
+  .foot-links { display:flex; flex-wrap:wrap; gap:8px 22px; }
+  .foot-links a { color:var(--muted); font-size:.92rem; text-decoration:none; }
+  .foot-links a:hover { color:var(--text); }
+  .copyright { width:100%; margin-top:26px; padding-top:20px; border-top:1px solid var(--border); color:var(--faint); font-size:.85rem; }
+
+  @media (max-width:640px){ .nav-links { width:100%; margin-left:0; } .nav-links a { padding:6px 9px; } }
 </style>
 </head>
 <body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="./index.html">
+      <span class="logo">FFN</span>
+      <span class="brand-name">Football Flashing News</span>
+    </a>
+    <nav class="nav-links">
+      <a href="./index.html">Home</a>
+      <a href="./index.html#how">How It Works</a>
+      <a href="./index.html#features">Features</a>
+      <a href="./index.html#permissions">Permissions</a>
+      <a href="./index.html#faq">FAQ</a>
+      <a href="./tos.html">Terms</a>
+      <a href="./privacy.html">Privacy</a>
+      <a href="./index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
 <main>
   <h1>Terms of Service</h1>
-  <p class="updated">Last updated: June 21, 2026</p>
+  <p class="updated">Last updated: June 30, 2026</p>
 
   <p>These Terms of Service ("Terms") govern the use of the Football Flashing News service
      ("the Service", "we", "us"), an automated application that publishes football (soccer)
@@ -28,11 +96,12 @@
      TikTok Content Posting API.</p>
 
   <h2>1. Description of the Service</h2>
-  <p>The Service aggregates publicly available football news &mdash; transfer reports, match
-     results, and fixture previews &mdash; generates image and video posts from that
-     information, and publishes them to a single TikTok account and a single Instagram account
-     owned and authorized by the Service operator. The Service does not offer accounts,
-     logins, or content publishing to any third-party end users.</p>
+  <p>The Service produces original first-party football graphics &mdash; match-result
+     carousels, highlight and transfer reels, fixture previews, and transfer-news cards &mdash;
+     from publicly reported, cross-checked information, and publishes them to a single TikTok
+     account and a single Instagram account owned and authorized by the Service operator. The
+     Service does not offer accounts, logins, or content publishing to any third-party end
+     users.</p>
 
   <h2>2. Authorized Use</h2>
   <p>Only the Service operator authorizes the application, through TikTok's official OAuth
@@ -49,10 +118,10 @@
   <h2>4. Compliance with TikTok Policies</h2>
   <p>Use of the TikTok integration is subject to TikTok's
      <a href="https://www.tiktok.com/legal/page/global/terms-of-service/en">Terms of Service</a>,
-     <a href="https://developers.tiktok.com/doc/tiktok-developer-terms-of-service">Developer Terms</a>,
+     <a href="https://www.tiktok.com/legal/page/global/tik-tok-developer-terms-of-service/en">Developer Terms</a>,
      and Community Guidelines. The Service is designed to operate within those policies, using
-     only the granted scopes (<code>user.info.basic</code>, <code>video.upload</code>,
-     <code>video.publish</code>) for the sole purpose of publishing the operator's own content.</p>
+     only the granted scopes (<code>user.info.basic</code>, <code>video.publish</code>,
+     <code>video.upload</code>) for the sole purpose of publishing the operator's own content.</p>
 
   <h2>5. Limitation of Liability</h2>
   <p>To the maximum extent permitted by law, the Service operator is not liable for any
@@ -71,5 +140,28 @@
   <hr>
   <p><a href="./index.html">&larr; Back</a> &middot; <a href="./privacy.html">Privacy Policy</a></p>
 </main>
+
+<footer class="site">
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <a class="brand" href="./index.html"><span class="logo">FFN</span><span class="brand-name">Football Flashing News</span></a>
+      <p>An operator-run automated football-news service publishing original graphics to its own Instagram and TikTok account via TikTok's official Content Posting API.</p>
+    </div>
+    <nav class="foot-links" aria-label="Footer">
+      <a href="./index.html#how">How It Works</a>
+      <a href="./index.html#features">Features</a>
+      <a href="./index.html#permissions">Permissions</a>
+      <a href="./index.html#faq">FAQ</a>
+      <a href="./index.html#contact">Contact</a>
+      <a href="./tos.html">Terms of Service</a>
+      <a href="./privacy.html">Privacy Policy</a>
+    </nav>
+    <div class="copyright">
+      © 2026 Football Flashing News · Contact: <a href="mailto:pedrolfmachado@gmail.com">pedrolfmachado@gmail.com</a> ·
+      <a href="./tos.html">Terms of Service</a> · <a href="./privacy.html">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>
